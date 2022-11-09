@@ -1,0 +1,318 @@
+<html>
+    <head>
+        <title>Registo</title>
+        <style>
+            :root {
+    --body_gradient_left: #244c5c;
+    --body_gradient_right: #2cb49c;
+    --form_bg: #ffffff;
+    --input_bg: #E5E5E5;
+    --input_hover: #eaeaea;
+    --submit_bg: #26724e;
+    --submit_hover: #80d5ad;
+    --icon_color: #244c5c;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* make the body full height*/
+    height: 100vh;
+    /* set our custom font */
+    font-family: 'Roboto',
+        sans-serif;
+    /* create a linear gradient*/
+    background-image: linear-gradient(to right, var(--body_gradient_left), var(--body_gradient_right));
+    display: flex;
+}
+
+#form_wrapper {
+
+    width: 900px;
+    height: 600px;
+    /* this will help us center it*/
+    margin-left: 25%;
+    margin-top: 1%;
+    margin-right: 15%;
+    background-color: var(--form_bg);
+    border-radius: 50px;
+    /* make it a grid container*/
+    display: grid;
+    /* with two columns of same width*/
+    grid-template-columns: 1fr 1fr;
+    /* with a small gap in between them*/
+    grid-gap: 1vw;
+    /* add some padding around */
+    padding: 0vh 10px;
+}
+
+#form_left {
+    /* center the image */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#form_left img {
+    width: 400px;
+    height: 225px;
+}
+#form_left2 {
+    /* center the text */
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+#form_left3 {
+    /* center the text */
+    display: block;
+    justify-content: center;
+    align-items: center;
+}
+#form_left_text {
+    display: block;
+    position: relative;
+    top: 10px;
+    align-items: center;
+}
+
+#form_right {
+    display: grid;
+    /* single column layout */
+    grid-template-columns: 1fr;
+    /* have some gap in between elements*/
+    grid-gap: 5px;
+    padding: 7% 5%;
+}
+
+h1{
+	text-align: center;
+	font-size: 25px;
+}
+span {
+    text-align: center;
+}
+
+.input_container {
+    background-color: var(--input_bg);
+    /* vertically align icon and text inside the div*/
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.input_container:hover {
+    background-color: var(--input_hover);
+}
+
+.input_container,
+#input_submit {
+    height: 55px;
+    /* make the borders more round */
+    border-radius: 30px;
+    width: 100%;
+}
+
+.input_field {
+    /* customize the input tag with lighter font and some padding*/
+    color: var(--icon_color);
+    background-color: inherit;
+    width: 90%;
+    border: none;
+    font-size: 1.1rem;
+    font-weight: 400;
+    padding-left: 30px;
+}
+
+.input_field:hover,
+.input_field:focus {
+    /* remove the outline */
+    outline: none;
+}
+
+#input_submit {
+    /* submit button has a different color and different padding */
+    background-color: var(--submit_bg);
+    padding-left: 0;
+    font-weight: bold;
+    color: white;
+    text-transform: uppercase;
+}
+
+#input_submit:hover {
+    background-color: var(--submit_hover);
+    /* simple color transition on hover */
+    transition: background-color,
+        1s;
+    cursor: pointer;
+}
+
+/* shift it a bit lower */
+#create_account {
+    display: block;
+    position: relative;
+    top: 10px;
+}
+
+a {
+    /* remove default underline */
+    text-decoration: none;
+    color: var(--submit_bg);
+    font-weight: bold;
+}
+
+a:hover {
+    color: var(--submit_hover);
+}
+
+i {
+    color: var(--icon_color);
+}
+
+/* make it responsive */
+@media screen and (max-width:500px) {
+
+    /* make the layout  a single column and add some margin to the wrapper */
+    #form_wrapper {
+        grid-template-columns: 1fr;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    /* on small screen we don't display the image */
+    #form_left {
+        display: none;
+    }
+}
+.td_text {
+	justify-content: center;
+    align-items: center;
+    text-align:center;
+    padding-top: 25px;
+}
+.tr_text {
+	justify-content: center;
+    align-items: center;
+    text-align:center;
+
+}
+.td_img {
+	justify-content: center;
+    align-items: center;
+    display: flex;
+    padding: 10vh 10px;
+}
+.tr_img {
+	justify-content: center;
+    align-items: center;
+    display: flex;
+}
+        </style>
+        <script>
+function formvalidation()
+{
+	var fulname = document.form.fullname.value;
+	var email = document.form.email.value;
+	var username = document.form.username.values;
+	var password = document.form.password.value;
+	var conpassword = document.form.conpassword.value;
+	if (fullname == null || fulname == "")
+	{
+		alert("insert full name data");
+		return false;
+	}
+	else if (email == null || email =="")
+		{
+		alert("Email cannot be blank");
+		return false;
+		}
+	else if (username == null || username =="")
+	{
+	alert("Insert username");
+	return false;
+	}
+	else if (password.length < 8)
+	{
+	alert("Password must be at least 8 characters long");
+	return false;
+	}
+	else if (password != conpassword)
+	{
+	alert("Confirm Password");
+	return false;
+	}
+}
+</script>
+    </head>
+    <body>
+        <form action="#" method="post">
+            {% csrf_token %}
+            {% load static %}
+            <div id="form_wrapper">
+                <div id="form_left">
+					<table>
+						<tr class="tr_img">
+							<td class="td_img">
+                    			<img src="{% static 'avatar_blue.png' %}" alt="computer icon">
+							</td>
+						</tr>
+						<tr class="tr_text">
+							<td class="td_text">
+								<div id="form_left2">
+									<h3>Vamos criar uma nova conta!</h3>
+									<span id="form_left_text">Apenas deverá demorar uns momentos para começar a usufruir dos nossos serviços!</span>
+                				</div>
+							</td>
+						</tr>
+						<tr class="tr_text">
+							<td class="td_text">
+								<div id="form_left3">
+									<span class='create_account'>Já possui uma conta?<a href="http://localhost:8000/login/"> Inicie Sessão! &#x27A1; </a></span>
+                				</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+				<div id="form_right">
+					<h1>Registe-se!</h1>
+					<div class="input_container">
+						<i class="fas fa-envelope"></i>
+						<input placeholder="Eduardo" type="text" name="nome" required="required"
+						id="nome" class="input_field">
+					</div>
+					<div class="input_container">
+						<i class="fas fa-envelope"></i>
+						<input placeholder="Moreira" type="text" name="sobrenome" required="required"
+						id="sobrenome" class="input_field">
+					</div>
+					<div class="input_container">
+						<i class="fas fa-envelope"></i>
+						<input placeholder="your_email@email.com" type="email" name="email" required="required"
+						id="email" class="input_field">
+					</div>
+					<div class="input_container">
+						<i class="fas fa-envelope"></i>
+						<input placeholder="eduardomoreira24" type="text" name="username" required="required"
+						id="username" class="input_field">
+					</div>
+					<div class="input_container">
+                		<i class="fas fa-lock"></i>
+                		<input placeholder="Palavra-passe" type="password" name="password"
+							   id="password" required= "required" class='input_field'>
+            		</div>
+					<div class="input_container">
+                		<i class="fas fa-lock"></i>
+                		<input placeholder="Confirme a Palavra-passe" type="password" name="conpassword"
+							   id="conpassword" required="required" class='input_field'>
+            		</div>
+					<button type="submit" id="input_submit" class='input_field'>Registar!</button>
+				</div>
+					<!--Falta colocar o aviso-->
+				<font color="red">{{aviso}}</font>
+            </div>
+        </form>
+    </body>
+</html>
